@@ -1,13 +1,6 @@
 [![Angular Logo](https://www.vectorlogo.zone/logos/angular/angular-icon.svg)](https://angular.io/) [![Electron Logo](https://www.vectorlogo.zone/logos/electronjs/electronjs-icon.svg)](https://electronjs.org/)
 
-![Maintained][maintained-badge]
 [![Travis Build Status][build-badge]][build]
-[![Make a pull request][prs-badge]][prs]
-[![License](http://img.shields.io/badge/Licence-MIT-brightgreen.svg)](LICENSE.md)
-
-[![Watch on GitHub][github-watch-badge]][github-watch]
-[![Star on GitHub][github-star-badge]][github-star]
-[![Tweet][twitter-badge]][twitter]
 
 # Introduction
 
@@ -95,7 +88,7 @@ Maybe you want to execute the application in the browser with hot reload ? Just 
 - Angular 8 & Electron 7 : Branch [angular7](https://github.com/maximegris/angular-electron/tree/angular8)
 - Angular 9 & Electron 8 : (master)
 
-[build-badge]: https://travis-ci.org/maximegris/angular-electron.svg?branch=master&style=style=flat-square
+[build-badge]: https://travis-ci.org/Anciaus/translate-sync.svg?branch=master
 [build]: https://travis-ci.org/maximegris/angular-electron
 [license-badge]: https://img.shields.io/badge/license-Apache2-blue.svg?style=style=flat-square
 [license]: https://github.com/maximegris/angular-electron/blob/master/LICENSE.md
