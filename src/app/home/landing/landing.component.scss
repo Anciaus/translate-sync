@@ -1,6 +1,7 @@
 .container {
   height: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 
@@ -12,5 +13,13 @@
     color: white;
     margin: 0;
     padding: 50px 20px;
+  }
+
+  .json-table {
+    width: 100%;
+
+    table {
+      width: 100%;
+    }
   }
 }
