@@ -2,12 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { ElectronService } from '@app/core/services';
 
+import { Translation } from '@app/home/models';
 import { LandingService } from '@app/home/services';
-
-export interface Translation {
-  key: string;
-  [lang: string]: string;
-}
 
 export const TRANSLATION_VALUES: Translation[] = [
   {
