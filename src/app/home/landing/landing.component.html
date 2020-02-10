@@ -2,7 +2,7 @@
   <h1 class="title">
     {{ 'PAGES.HOME.TITLE' | translate }}
   </h1>
-  <button mat-raised-button color="primary">Upload .json</button>
+  <button mat-raised-button color="primary" (click)="showUploadDialog()">Upload .json</button>
 
   <section class="json-table">
     <table mat-table [dataSource]="translationsSource">
