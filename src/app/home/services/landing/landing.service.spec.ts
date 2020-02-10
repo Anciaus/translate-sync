@@ -5,17 +5,13 @@ import { FileSystemService } from '@app/core/services';
 import { LandingService } from '@app/home/services';
 
 describe('LandingService', () => {
-
   let service: LandingService;
 
   let fileSystemService: FileSystemService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        FileSystemService,
-        LandingService
-      ]
+      providers: [FileSystemService, LandingService]
     });
     service = TestBed.inject(LandingService);
 
@@ -27,8 +23,24 @@ describe('LandingService', () => {
   });
 
   describe('readLanguageFilesFromPath', () => {
-    it('should be able to read one file path if provided', () => {
-      // spyOn(fileSystemService, 'readFile').and.returnValue()
+    it('should read one file for path provided', () => {
+      let readFileSpy = spyOn(fileSystemService, 'readFile').and.returnValue(
+        new Promise(() => ({ aaa: { bbb: 'ccc' } }))
+      );
+
+      service.readLanguageFilesFromPath(['en.json']);
+
+      expect(readFileSpy).toHaveBeenCalled();
+    });
+
+    it('should read multiple files for paths provided', () => {
+      let readFileSpy = spyOn(fileSystemService, 'readFile').and.returnValue(
+        new Promise(() => ({ aaa: { bbb: 'ccc' } }))
+      );
+
+      service.readLanguageFilesFromPath(['en.json', 'de.json']);
+
+      expect(readFileSpy).toHaveBeenCalledTimes(2);
     });
   });
 });

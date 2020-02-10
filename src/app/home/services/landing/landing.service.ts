@@ -6,8 +6,12 @@ import { FileSystemService } from '@app/core/services';
 export class LandingService {
   constructor(private fileSystemService: FileSystemService) {}
 
-  public readLanguageFilesFromPath(paths: string[]): Promise<string> {
-    return this.fileSystemService.readFile(paths[0], {
+  public readLanguageFilesFromPath(paths: string[]): Promise<string>[] {
+    return paths.map((path: string) => this.readFileForPath(path));
+  }
+
+  private readFileForPath(path: string): Promise<string> {
+    return this.fileSystemService.readFile(path, {
       encoding: 'utf8',
       flag: 'r'
     });
