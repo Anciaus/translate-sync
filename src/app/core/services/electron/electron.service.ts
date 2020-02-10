@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import { ipcRenderer, webFrame, remote } from 'electron';
 import * as childProcess from 'child_process';
 import * as fs from 'fs';
+import * as util from 'util';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class ElectronService {
   webFrame: typeof webFrame;
   remote: typeof remote;
   childProcess: typeof childProcess;
+  util: typeof util;
   fs: typeof fs;
 
   get isElectron(): boolean {
@@ -28,6 +30,7 @@ export class ElectronService {
       this.remote = window.require('electron').remote;
 
       this.childProcess = window.require('child_process');
+      this.util = window.require('util');
       this.fs = window.require('fs');
     }
   }
