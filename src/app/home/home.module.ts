@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 
-import { SharedModule } from '../shared/shared.module';
+import { LandingComponent } from '@app/home/components';
+import { HomeRoutingModule } from '@app/home/home-routing.module';
+import { LandingService } from '@app/home/services';
 
-import { HomeRoutingModule } from './home-routing.module';
-import { LandingComponent } from './landing/landing.component';
-import { LandingService } from './landing/services/landing/landing.service';
+import { SharedModule } from '@app/shared/shared.module';
 
 @NgModule({
   declarations: [LandingComponent],

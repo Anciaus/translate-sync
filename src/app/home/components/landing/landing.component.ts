@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ElectronService } from '../../core/services';
+import { ElectronService } from '@app/core/services';
 
-import { LandingService } from './services/landing/landing.service';
+import { LandingService } from '@app/home/services';
 
 export interface Translation {
   key: string;

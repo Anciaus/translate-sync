@@ -1,9 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ElectronService } from '../../core/services';
 
-import { LandingComponent } from './landing.component';
+import { ElectronService } from '@app/core/services';
+
+import { LandingComponent } from '@app/home/components';
+import { LandingService } from '@app/home/services';
+
 import { TranslateModule } from '@ngx-translate/core';
-import { LandingService } from './services/landing/landing.service';
 
 describe('LandingComponent', () => {
   let component: LandingComponent;

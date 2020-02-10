@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { ElectronService } from '../../../../core/services';
+import { ElectronService } from '@app/core/services';
 
 @Injectable()
 export class LandingService {

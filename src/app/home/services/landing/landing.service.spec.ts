@@ -1,7 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-import { ElectronService } from '../../../../core/services';
 
-import { LandingService } from './landing.service';
+import { ElectronService } from '@app/core/services';
+
+import { LandingService } from '@app/home/services';
 
 describe('LandingService', () => {
   let service: LandingService;
