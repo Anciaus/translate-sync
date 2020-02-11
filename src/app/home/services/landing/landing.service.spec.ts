@@ -43,4 +43,18 @@ describe('LandingService', () => {
       expect(readFileSpy).toHaveBeenCalledTimes(2);
     });
   });
+
+  describe('listKeys', () => {
+    it('should return all keys in an object', () => {
+      const jsonObject = {
+        A: 'a',
+        B: 'b',
+        C: 'c'
+      };
+
+      const result = service.listKeys(jsonObject);
+
+      expect(result).toEqual(['A', 'B', 'C']);
+    });
+  });
 });
