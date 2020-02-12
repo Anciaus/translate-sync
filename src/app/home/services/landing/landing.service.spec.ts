@@ -24,7 +24,7 @@ describe('LandingService', () => {
 
   describe('readLanguageFilesFromPath', () => {
     it('should read one file for path provided', () => {
-      let readFileSpy = spyOn(fileSystemService, 'readFile').and.returnValue(
+      const readFileSpy = spyOn(fileSystemService, 'readFile').and.returnValue(
         new Promise(() => ({ aaa: { bbb: 'ccc' } }))
       );
 
@@ -34,7 +34,7 @@ describe('LandingService', () => {
     });
 
     it('should read multiple files for paths provided', () => {
-      let readFileSpy = spyOn(fileSystemService, 'readFile').and.returnValue(
+      const readFileSpy = spyOn(fileSystemService, 'readFile').and.returnValue(
         new Promise(() => ({ aaa: { bbb: 'ccc' } }))
       );
 
@@ -44,7 +44,7 @@ describe('LandingService', () => {
     });
   });
 
-  describe('listKeys', () => {
+  describe('listKeysWithValues', () => {
     it('should return all keys in an object', () => {
       const jsonObject = {
         A: 'a',
@@ -52,9 +52,27 @@ describe('LandingService', () => {
         C: 'c'
       };
 
-      const result = service.listKeys(jsonObject);
+      const result = service.listKeysWithValues(jsonObject);
 
-      expect(result).toEqual(['A', 'B', 'C']);
+      expect(result).toEqual([
+        ['A', 'a'],
+        ['B', 'b'],
+        ['C', 'c']
+      ]);
+    });
+
+    it('should return nested keys separated by .', () => {
+      const jsonObject = {
+        A: { B: 'b' },
+        C: { D: 'd' }
+      };
+
+      const result = service.listKeysWithValues(jsonObject);
+
+      expect(result).toEqual([
+        ['A.B', 'b'],
+        ['C.D', 'd']
+      ]);
     });
   });
 });
