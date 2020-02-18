@@ -6,14 +6,9 @@ import { ElectronService } from '@app/core/services/electron/electron.service';
   providedIn: 'root'
 })
 export class FileSystemService {
-  public readFile: (
-    path: string | Buffer | URL | number,
-    options: any
-  ) => Promise<string>;
+  public readFile = this.electronService.util.promisify(
+    this.electronService.fs.readFile
+  );
 
-  constructor(private electronService: ElectronService) {
-    this.readFile = this.electronService.util.promisify(
-      this.electronService.fs.readFile
-    );
-  }
+  constructor(private electronService: ElectronService) { }
 }
