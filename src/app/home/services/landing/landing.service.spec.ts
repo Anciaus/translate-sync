@@ -22,6 +22,12 @@ describe('LandingService', () => {
     expect(service).toBeTruthy();
   });
 
+  describe('groupTranslationsByKey', () => {
+    it('should group translations by key paths', () => {
+      service.groupTranslationsByKey([['A.B', 'c']])
+    });
+  });
+
   describe('readLanguageFilesFromPath', () => {
     it('should read one file for path provided', () => {
       const readFileSpy = spyOn(fileSystemService, 'readFile').and.returnValue(
@@ -41,38 +47,6 @@ describe('LandingService', () => {
       service.readLanguageFilesFromPath(['en.json', 'de.json']);
 
       expect(readFileSpy).toHaveBeenCalledTimes(2);
-    });
-  });
-
-  describe('listKeysWithValues', () => {
-    it('should return all keys in an object', () => {
-      const jsonObject = {
-        A: 'a',
-        B: 'b',
-        C: 'c'
-      };
-
-      const result = service.listKeysWithValues(jsonObject);
-
-      expect(result).toEqual([
-        ['A', 'a'],
-        ['B', 'b'],
-        ['C', 'c']
-      ]);
-    });
-
-    it('should return nested keys separated by .', () => {
-      const jsonObject = {
-        A: { B: 'b' },
-        C: { D: 'd' }
-      };
-
-      const result = service.listKeysWithValues(jsonObject);
-
-      expect(result).toEqual([
-        ['A.B', 'b'],
-        ['C.D', 'd']
-      ]);
     });
   });
 });

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { FileSystemService } from '@app/core/services';
+import { FileSystemService, KeyPathService } from '@app/core/services';
 
 import { Translation } from '@app/home/models';
 
@@ -8,11 +8,31 @@ import * as R from 'ramda';
 
 @Injectable()
 export class LandingService {
-  constructor(private fileSystemService: FileSystemService) {}
+  constructor(
+    private fileSystemService: FileSystemService,
+    private keyPathService: KeyPathService
+  ) {}
 
   public getParsedTranslations(paths): Promise<Translation[]> {
-    this.readLanguageFilesFromPath(paths).then((fileContents) => fileContents);
+    const translationsByLanguage = paths.map((path) => [
+      this.getFilename(path),
+      this.deserializeObjectFromFile(path)
+    ]);
 
+    R.groupBy();
+
+    return this.readLanguageFilesFromPath(paths)
+      .then((fileContents) =>
+        R.unnest(
+          fileContents.map((file) =>
+            this.keyPathService.listKeysWithValues(file)
+          )
+        )
+      )
+      .then((translations) => this.groupTranslationsByKey(translations));
+  }
+
+  public groupTranslationsByKey(translations: string[][]): Translation[] {
     return null;
   }
 
@@ -20,17 +40,14 @@ export class LandingService {
     return Promise.all(paths.map((path: string) => this.readFileForPath(path)));
   }
 
-  public listKeysWithValues(jsonObject: any, path: string[] = []): string[][] {
-    const keyValuePairs = R.toPairs(jsonObject);
+  private getFilename(path: string): string {
+    return R.last(path.split('/'));
+  }
 
-    return keyValuePairs.map(([key, value]) => {
-      const currentPath = path.concat([key]);
-      if (R.type(value) === 'Object') {
-        return R.unnest(this.listKeysWithValues(value, currentPath));
-      }
-
-      return [currentPath.join('.'), value];
-    });
+  private deserializeObjectFromFile(path: string): Promise<any> {
+    return this.readFileForPath(path).then((stringObject) =>
+      JSON.parse(stringObject)
+    );
   }
 
   private readFileForPath(path: string): Promise<string> {

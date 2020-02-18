@@ -1,3 +1,4 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ElectronService } from '@app/core/services';
@@ -20,7 +21,8 @@ describe('LandingComponent', () => {
       providers: [
         ElectronService,
         LandingService
-      ]
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
   }));
 
